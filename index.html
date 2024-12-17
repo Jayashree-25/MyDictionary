@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Dictionary</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            background-color: rgba(128, 128, 201, 0.14);
+        }
+
+        .navbar {
+            background-color: #1582b0;
+            position: fixed;
+        }
+
+        .nav-item {
+            margin-right: 30px;
+        }
+
+        .logo {
+            font-family: "Sour Gummy", sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo:hover {
+            text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff;
+        }
+
+        .search-bar {
+            margin-top: 10%;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .search-bar input {
+            width: 40%;
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 15px;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #5590cb;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 15px;
+        }
+
+        .search-bar button:hover {
+            background-color: #3e4ce9a2;
+        }
+
+        .word-box {
+            display: flex;
+            align-items: center;
+            margin-left: 15%;
+            margin-right: 15%;
+            justify-content: space-between;
+            margin-top: 3%;
+        }
+
+        .btn1 {
+            background-color: rgba(241, 238, 50, 0.814);
+            color: #000;
+            height: 30px;
+            width: 80px;
+            border: none;
+        }
+
+        .btn1:hover {
+            background-color: rgb(252, 250, 92);
+            border-radius: 5px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn2 {
+            height: 30px;
+            width: 80px;
+            border: none;
+            background-color: rgba(241, 238, 50, 0.814);
+            color: #000;
+        }
+
+        .btn2:hover {
+            background-color: rgb(252, 250, 92);
+            border-radius: 5px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn3 {
+            height: 30px;
+            width: 80px;
+            border: none;
+            background-color: rgba(241, 238, 50, 0.814);
+            color: #000;
+        }
+
+        .btn3:hover {
+            background-color: rgb(252, 250, 92);
+            border-radius: 5px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn4 {
+            height: 30px;
+            width: 80px;
+            border: none;
+            background-color: rgba(241, 238, 50, 0.814);
+            color: #000;
+        }
+
+        .btn4:hover {
+            background-color: rgb(252, 250, 92);
+            border-radius: 5px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn5 {
+            height: 30px;
+            width: 80px;
+            border: none;
+            background-color: rgba(241, 238, 50, 0.814);
+            color: #000;
+        }
+
+        .btn5:hover {
+            background-color: rgb(252, 250, 92);
+            border-radius: 5px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .card img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            /* Ensures the body content takes the full card height */
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .card-text {
+            font-size: 15px;
+        }
+
+        .curved-section {
+            background: #1582b0;
+            height: 300px;
+            position: relative;
+            clip-path: ellipse(70% 90% at 50% 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content {
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .footer {
+            background-color: #1e1e1e;
+            padding: 40px 20px;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 50px;
+            text-align: center;
+        }
+
+        .footer-item h4 {
+            margin-bottom: 10px;
+            color: #ffaa00;
+            font-size: 1.2rem;
+        }
+
+        .footer-item p {
+            font-size: 0.9rem;
+            color: #dddddd;
+        }
+    </style>
+
+    <script>
+        var dictionary = {
+            "english": {
+                "esoteric": {
+                    meaning: "liked by only a small number of people",
+                    synonyms: ["Obscure", "Cryptic", "Recondite"],
+                    antonyms: ["Popular", "Common", "Mainstream"]
+                },
+                "gaffer": {
+                    meaning: "a person in charge of others",
+                    synonyms: ["Foreman", "Boss", "Supervisor"],
+                    antonyms: ["Subordinate", "Employee", "Worker"]
+                },
+                "advocate": {
+                    meaning: "to support or argue for",
+                    synonyms: ["Supporter", "Champion", "Proponent"],
+                    antonyms: ["Opponent", "Critic", "Adversary"]
+                },
+                "wreck": {
+                    meaning: "to destroy or badly damage something",
+                    synonyms: ["Destroy", "Ruin", "Demolish"],
+                    antonyms: ["Build", "Create", "Construct"]
+                },
+                "raise": {
+                    meaning: "to lift something up",
+                    synonyms: ["Lift", "Elevate", "Increase"],
+                    antonyms: ["Lower", "Drop", "Reduce"]
+                },
+                "sonorous": {
+                    meaning: "having a pleasant, deep and full sound",
+                    synonyms: ["loud", "roaring", "thundering"],
+                    antonyms: ["quiet", "soft", "gentle"]
+                },
+                "paranoid": {
+                    meaning: "a mental disorder in which a person has an extreme fear and distrust of others",
+                    synonyms: ["fearful", "insecure", "suspicious"],
+                    antonyms: ["relaxed", "peaceful", "relieved"]
+                },
+                "onset": {
+                    meaning: "the beginning (often of something unpleasant)",
+                    synonyms: ["start", "arrival", "outset"],
+                    antonyms: ["end", "termination"]
+                },
+                "foothills": {
+                    meaning: "hills or low mountains at the base of a higher mountain",
+                    synonyms: ["highlands", "uplands", "mountains"],
+                    antonyms: ["slope", "valley", "summit"]
+                },
+                "ailment": {
+                    meaning: "an illness, especially one that is not very serious",
+                    synonyms: ["illness", "disease", "disorder"],
+                    antonyms: ["wellness", "fitness", "soundness"]
+                }
+            },
+            "hindi": {
+                "अनुभूति": {
+                    meaning: "Feeling",
+                    synonyms: ["भावना (Bhavana)", "अहसास (Ahsaas)"],
+                    antonyms: ["शून्यता (Shunyata)", "निर्जीवता (Nirjeevata)"]
+                },
+                "साहस": {
+                    meaning: "Courage",
+                    synonyms: ["वीरता (Veerta)", "निडरता (Nidarta)"],
+                    antonyms: ["कायरता (Kayarta)", "भय (Bhay)"]
+                },
+                "मित्रता": {
+                    meaning: "Friendship",
+                    synonyms: ["दोस्ती (Dosti)", "साथ (Saath)"],
+                    antonyms: ["वैर (Vair)", "दुश्मनी (Dushmani)"]
+                },
+                "निराशा": {
+                    meaning: "Despair",
+                    synonyms: ["हताशा (Hataasha)", "अवसाद (Avasad)"],
+                    antonyms: ["आशा (Aasha)", "उमंग (Umang)"]
+                },
+                "स्वतंत्रता": {
+                    meaning: "Independence",
+                    synonyms: ["स्वाधीनता (Svadheenata)", "आजादी (Aazaadi)"],
+                    antonyms: ["पराधीनता (Paradheenata)", "गुलामी (Gulami)"]
+                },
+                "जिम्मेदारी": {
+                    meaning: "Responsibility",
+                    synonyms: ["दायित्व (Dayitva)", "जवाबदेही (Jawabdehi)"],
+                    antonyms: ["लापरवाही (Laparvahi)", "अदायगी (Adaayagi)"]
+                },
+                "संघर्ष": {
+                    meaning: "Struggle",
+                    synonyms: ["संघात (Sanghat)", "प्रयास (Prayaas)"],
+                    antonyms: ["सुलह (Sulah)", "शांति (Shaanti)"]
+                },
+                "आनंद": {
+                    meaning: "Joy",
+                    synonyms: ["खुशी (Khushi)", "सुख (Sukh)"],
+                    antonyms: ["दुःख (Dukh)", "पीड़ा (Pida)"]
+                },
+                "विश्वास": {
+                    meaning: "Trust",
+                    synonyms: ["आस्था (Aastha)", "श्रद्धा (Shraddha)"],
+                    antonyms: ["अविश्वास (Avishwas)", "शंका (Shanka)"]
+                },
+                "माफी": {
+                    meaning: "Forgiveness",
+                    synonyms: ["क्षमा (Kshama)", "उदारता (Udaarta)"],
+                    antonyms: ["नाराजगी (Narazgi)", "प्रतिशोध (Pratishodh)"]
+                }
+            }
+        };
+
+        $(document).ready(function () {
+            $('#search-btn').click(function () {
+                var lang = $('#lang-select').val();
+                var word = $('#search-word').val().trim().toLowerCase();
+                if (lang === 'english') {
+                    word = word.toLowerCase();
+                }
+                if (word in dictionary[lang]) {
+                    if (lang === 'english') {
+                        var meaning = dictionary[lang][word].meaning;
+                        var synonyms = dictionary[lang][word].synonyms.join(", ");
+                        var antonyms = dictionary[lang][word].antonyms.join(", ");
+                        $('#meaning').html('<strong>Meaning:</strong> ' + meaning);
+                        $('#synonyms').html('<strong>Synonyms:</strong> ' + synonyms);
+                        $('#antonyms').html('<strong>Antonyms:</strong> ' + antonyms);
+                    } else {
+                        var meaning = dictionary[lang][word].meaning;
+                        var synonyms = dictionary[lang][word].synonyms.join(", ");
+                        var antonyms = dictionary[lang][word].antonyms.join(", ");
+                        $('#meaning').html('<strong>Meaning:</strong> ' + meaning);
+                        $('#synonyms').html('<strong>Synonyms:</strong> ' + synonyms);
+                        $('#antonyms').html('<strong>Antonyms:</strong> ' + antonyms);
+                    }
+                    $('#result-section').show();
+                } else {
+                    $('#result-section').hide();
+                    alert("Word not found in dictionary.");
+                }
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <!-- Brand -->
+            <a class="navbar-brand logo" href="#"><img src="dictionary.png" height="50px" width="50px">VocabVault</a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><img src="home.png" height="20px" width="20px">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><img src="audit.png" height="20px" width="20px">Dictionary</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><img src="list.png" height="20px" width="20px">Vocabulary Lists</a>
+                </li>
+            </ul>
+
+            <form>
+                <button class="btn btn-warning" type="button"><a href="login.html" style="color: #000;">Login</a></button>
+                <button class="btn btn-success" type="button"><a href="signup.html" style="color: #000;">Sign Up</a></button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="search-bar">
+        <h3>What word do you want to look up?</h3>
+        <br>
+        <select id="lang-select">
+            <option value="english">English</option>
+            <option value="hindi">हिंदी (Hindi)</option>
+        </select>
+        <input id="search-word" type="text" placeholder="Enter a word...">
+        <button id="search-btn" type="button">Search</button>
+    </div>
+    <div class="word-box">
+        <button class="btn1">
+            <span title="liked by only a small number of people">Esoteric</span>
+        </button>
+        <button class="btn2">
+            <span title="a person in charge of others">Gaffer</span>
+        </button>
+        <button class="btn3">
+            <span title="to support or argue for">Advocate</span>
+        </button>
+        <button class="btn4">
+            <span title="to destroy or badly damage something">Wreck</span>
+        </button>
+        <button class="btn5">
+            <span title="Struggle">संघर्ष</span>
+        </button>
+        <button class="btn5">
+            <span title="Joy">आनंद</span>
+        </button>
+        <button class="btn5">
+            <span title="Trust">विश्वास</span>
+        </button>
+        <button class="btn5">
+            <span title="Feeling">अनुभूति</span>
+        </button>
+        <br>
+    </div>
+
+    <div id="result-section" style="text-align: center; margin-top: 20px; display: none;">
+        <h3>Results</h3>
+        <div id="meaning"></div>
+        <div id="synonyms"></div>
+        <div id="antonyms"></div>
+    </div>
+
+    <br>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="dictionary-soul.png" class="mb-3">
+                        <h3 class="card-title">Finally, a dictionary with a soul</h3>
+                        <p class="card-text">Our definitions were written by humans, for humans. Each word has a
+                            friendly explanation that makes it easy to remember.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="fastest-dictionary.png" class="mb-3">
+                        <h3 class="card-title">World's smartest, fastest dictionary</h3>
+                        <p class="card-text">Find the word you're looking for faster than any other online dictionary.
+                            That's less time searching, more time learning.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="real-world.png" class="mb-3">
+                        <h3 class="card-title">Real-world vocabulary</h3>
+                        <p class="card-text">Expand your vocabulary with words used in real-world scenarios, not just
+                            definitions from textbooks.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="curved-section">
+        <div class="content">
+            <h1>Sign up now (it's free!)</h1>
+            <button class="btn btn-success">Get Started</button>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-container">
+            <div class="footer-item">
+                <h5 style="color: rgb(12, 113, 146);">Created by: GROUP 6</h5>
+            </div>
+        </div>
+        <div class="footer-container">
+            <div class="footer-item">
+                <h4>Jayshree Das</h4>
+                <p>2341004082</p>
+            </div>
+            <div class="footer-item">
+                <h4>Aastha Singh</h4>
+                <p>2341019497</p>
+            </div>
+            <div class="footer-item">
+                <h4>Shreyanshi Gupta</h4>
+                <p>2341007074</p>
+            </div>
+            <div class="footer-item">
+                <h4>Aman Kumar</h4>
+                <p>2341011126</p>
+            </div>
+        </div>
+</body>
+
+</html>
