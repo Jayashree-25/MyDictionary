@@ -76,74 +76,26 @@
             margin-top: 3%;
         }
 
-        .btn1 {
-            background-color: rgba(241, 238, 50, 0.814);
-            color: #000;
-            height: 30px;
-            width: 80px;
-            border: none;
+        .word-item {
+            margin: 10px;
+            display: inline-block;
+            text-align: center;
+            padding: 10px;
         }
 
-        .btn1:hover {
-            background-color: rgb(252, 250, 92);
-            border-radius: 5px;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        .synonyms,
+        .antonyms {
+            display: none;
+            margin-top: 5px;
+            font-size: 14px;
+            color: #555;
         }
 
-        .btn2 {
-            height: 30px;
-            width: 80px;
-            border: none;
-            background-color: rgba(241, 238, 50, 0.814);
-            color: #000;
-        }
-
-        .btn2:hover {
-            background-color: rgb(252, 250, 92);
-            border-radius: 5px;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .btn3 {
-            height: 30px;
-            width: 80px;
-            border: none;
-            background-color: rgba(241, 238, 50, 0.814);
-            color: #000;
-        }
-
-        .btn3:hover {
-            background-color: rgb(252, 250, 92);
-            border-radius: 5px;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .btn4 {
-            height: 30px;
-            width: 80px;
-            border: none;
-            background-color: rgba(241, 238, 50, 0.814);
-            color: #000;
-        }
-
-        .btn4:hover {
-            background-color: rgb(252, 250, 92);
-            border-radius: 5px;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .btn5 {
-            height: 30px;
-            width: 80px;
-            border: none;
-            background-color: rgba(241, 238, 50, 0.814);
-            color: #000;
-        }
-
-        .btn5:hover {
-            background-color: rgb(252, 250, 92);
-            border-radius: 5px;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
         }
 
         .card {
@@ -164,7 +116,6 @@
             flex-direction: column;
             justify-content: space-between;
             height: 100%;
-            /* Ensures the body content takes the full card height */
         }
 
         .card-title {
@@ -355,6 +306,26 @@
                 }
             });
         })
+
+        $(document).ready(function () {
+            $('.word-item button').click(function () {
+                var $synonyms = $(this).siblings('.synonyms');
+                var $antonyms = $(this).siblings('.antonyms');
+
+                if ($synonyms.is(':visible') && $antonyms.is(':visible')) {
+                    $synonyms.hide();
+                    $antonyms.hide();
+                } else {
+                    var synonyms = $(this).parent().data('synonyms');
+                    var antonyms = $(this).parent().data('antonyms');
+
+                    $synonyms.text("Synonyms: " + synonyms).show();
+                    $antonyms.text("Antonyms: " + antonyms).show();
+                }
+            });
+        });
+
+
     </script>
 </head>
 
@@ -376,8 +347,10 @@
             </ul>
 
             <form>
-                <button class="btn btn-warning" type="button"><a href="login.html" style="color: #000;">Login</a></button>
-                <button class="btn btn-success" type="button"><a href="signup.html" style="color: #000;">Sign Up</a></button>
+                <button class="btn btn-warning" type="button"><a href="login.html"
+                        style="color: #000;">Login</a></button>
+                <button class="btn btn-success" type="button"><a href="signup.html" style="color: #000;">Sign
+                        Up</a></button>
             </form>
         </div>
     </nav>
@@ -392,33 +365,37 @@
         <input id="search-word" type="text" placeholder="Enter a word...">
         <button id="search-btn" type="button">Search</button>
     </div>
+
+
     <div class="word-box">
-        <button class="btn1">
-            <span title="liked by only a small number of people">Esoteric</span>
-        </button>
-        <button class="btn2">
-            <span title="a person in charge of others">Gaffer</span>
-        </button>
-        <button class="btn3">
-            <span title="to support or argue for">Advocate</span>
-        </button>
-        <button class="btn4">
-            <span title="to destroy or badly damage something">Wreck</span>
-        </button>
-        <button class="btn5">
-            <span title="Struggle">संघर्ष</span>
-        </button>
-        <button class="btn5">
-            <span title="Joy">आनंद</span>
-        </button>
-        <button class="btn5">
-            <span title="Trust">विश्वास</span>
-        </button>
-        <button class="btn5">
-            <span title="Feeling">अनुभूति</span>
-        </button>
-        <br>
+        <div class="word-item" data-synonyms="Obscure, Cryptic, Recondite" data-antonyms="Popular, Common, Mainstream">
+            <button class="btn1 btn-warning">Esoteric</button>
+            <div class="synonyms"></div>
+            <div class="antonyms"></div>
+        </div>
+        <div class="word-item" data-synonyms="Struggle, Fight, Battle" data-antonyms="Peace, Calm, Resolution">
+            <button class="btn5 btn-warning">संघर्ष</button>
+            <div class="synonyms"></div>
+            <div class="antonyms"></div>
+        </div>
+        <div class="word-item" data-synonyms="Supporter, Champion, Proponent"
+            data-antonyms="Opponent, Critic, Adversary">
+            <button class="btn3 btn-warning">Advocate</button>
+            <div class="synonyms"></div>
+            <div class="antonyms"></div>
+        </div>
+        <div class="word-item" data-synonyms="Joy, Happiness, Delight" data-antonyms="Sorrow, Despair, Sadness">
+            <button class="btn5 btn-warning">आनंद</button>
+            <div class="synonyms"></div>
+            <div class="antonyms"></div>
+        </div>
+        <div class="word-item" data-synonyms="Destroy, Ruin, Demolish" data-antonyms="Build, Create, Construct">
+            <button class="btn4 btn-warning">Wreck</button>
+            <div class="synonyms"></div>
+            <div class="antonyms"></div>
+        </div>
     </div>
+
 
     <div id="result-section" style="text-align: center; margin-top: 20px; display: none;">
         <h3>Results</h3>
@@ -465,7 +442,7 @@
     <div class="curved-section">
         <div class="content">
             <h1>Sign up now (it's free!)</h1>
-            <button class="btn btn-success">Get Started</button>
+            <button class="btn btn-success"><a href="signup.html" style="color: white;">Get Started</a></button>
         </div>
     </div>
     <div class="footer">
